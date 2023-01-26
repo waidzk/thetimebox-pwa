@@ -45,7 +45,7 @@ export default function Priorities() {
           type="text"
           placeholder="Priority"
           value={priorities.priority1}
-          onChange={updatePriorities}
+          onChange={() => updatePriorities}
           name="priority1"
         />
       </div>
@@ -56,7 +56,7 @@ export default function Priorities() {
           type="text"
           placeholder="Priority"
           value={priorities.priority2}
-          onChange={updatePriorities}
+          onChange={() => updatePriorities}
           name="priority2"
         />
       </div>
@@ -67,7 +67,7 @@ export default function Priorities() {
           type="text"
           placeholder="Priority"
           value={priorities.priority3}
-          onChange={updatePriorities}
+          onChange={() => updatePriorities}
           name="priority3"
         />
       </div>

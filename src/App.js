@@ -1,18 +1,33 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
 
 import BoxPage from "./pages/BoxPage";
-import Example from "./pages/Example";
 import TimePage from "./pages/TimePage";
+import Header from "./parts/Header";
+import Navigation from "./parts/Navigation";
+
+export const TabContext = React.createContext();
 
 export default function App() {
+  const [activePage, setActivePage] = useState("boxPage");
+
+  const changePage = (page) => {
+    setActivePage(page);
+  };
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<BoxPage />} />
-        <Route path="/timepage" element={<TimePage />} />
-        <Route path="/example" element={<Example />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <div className="hidden md:flex flex-col justify-center items-center h-screen">
+        <p>Sorry, the desktop mode is under development</p>
+        <p>You can use this app with your smartphone</p>
+      </div>
+      <div className="md:hidden block">
+        <TabContext.Provider value={{ activePage, changePage }}>
+          <Header />
+          {activePage === "boxPage" && <BoxPage />}
+          {activePage === "timePage" && <TimePage />}
+          <Navigation />
+        </TabContext.Provider>
+      </div>
+    </>
   );
 }
