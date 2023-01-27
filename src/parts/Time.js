@@ -78,7 +78,7 @@ export default function Time() {
                   id={schedule.idData}
                   placeholder="write here"
                   defaultValue={schedule.data}
-                  onChange={() => updateScheduleData(schedule.idData)}
+                  onChange={updateScheduleData(schedule.idData)}
                   className="text-[#272343] outline-none w-1/2 box border-y border-r h-10 border-[#272343] bg-[#BAE8E8] overflow-hidden p-1"
                 />
                 <div className="box border-y border-[#272343] bg-[#BAE8E8] h-13 flex items-center justify-between px-5 w-1/2">
@@ -127,7 +127,6 @@ export default function Time() {
         })}
       </div>
       <div
-        // className="w-full flex items-center h-10 justify-end pr-5 absolute bottom-20"
         className={
           boxLists.current.offsetHeight >= 440
             ? "w-full flex items-center h-10 justify-end pr-5 absolute top-10"
