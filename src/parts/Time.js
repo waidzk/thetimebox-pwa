@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Fade } from "react-awesome-reveal";
 import { DatePicker } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
 
@@ -72,8 +71,7 @@ export default function Time() {
       <div className="max-h-[77vh] overflow-auto" ref={boxLists}>
         {schedules.map((schedule) => {
           return (
-            <Fade direction="down" key={schedule.idData}>
-              <div id="box-item" className="flex">
+              <div id="box-item" className="flex" key={schedule.idData}>
                 <textarea
                   id={schedule.idData}
                   placeholder="write here"
@@ -122,7 +120,6 @@ export default function Time() {
                   </button>
                 </div>
               </div>
-            </Fade>
           );
         })}
       </div>

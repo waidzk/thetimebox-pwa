@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import BoxPage from "./pages/BoxPage";
 import TimePage from "./pages/TimePage";
@@ -9,6 +9,13 @@ export const TabContext = React.createContext();
 
 export default function App() {
   const [activePage, setActivePage] = useState("boxPage");
+
+  useEffect(() => {
+    const currentUrl = window.location.href
+    if (!currentUrl.includes('#hash')) {
+      window.history.pushState({}, null, currentUrl + '#hash')
+    }
+  }, []);
 
   const changePage = (page) => {
     setActivePage(page);
