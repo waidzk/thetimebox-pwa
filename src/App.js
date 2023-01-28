@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
-function App() {
+import BoxPage from "./pages/BoxPage";
+import TimePage from "./pages/TimePage";
+import Header from "./parts/Header";
+import Navigation from "./parts/Navigation";
+
+export const TabContext = React.createContext();
+
+export default function App() {
+  const [activePage, setActivePage] = useState("boxPage");
+
+  const changePage = (page) => {
+    setActivePage(page);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="hidden md:flex flex-col justify-center items-center h-screen">
+        <p>Sorry, the desktop mode is under development</p>
+        <p>You can use this app with your smartphone</p>
+      </div>
+      <div className="md:hidden block">
+        <TabContext.Provider value={{ activePage, changePage }}>
+          <Header />
+          {activePage === "boxPage" && <BoxPage />}
+          {activePage === "timePage" && <TimePage />}
+          <Navigation />
+        </TabContext.Provider>
+      </div>
+    </>
   );
 }
-
-export default App;
