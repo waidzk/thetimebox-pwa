@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import logo from "../assets/images/logo.svg";
 import { Drawer } from "rsuite";
 
-export default function Header() {
+export default function Header({setHeaderHeight}) {
   const [open, setOpen] = useState(true);
+  const headerRef = useRef(null)
 
   useEffect(() => {
     if (localStorage.getItem('schedules')) {
       setOpen(false)
     }
+    setHeaderHeight(headerRef.current.offsetHeight);
   }, [])
   
   return (
-    <>
-      <div className="w-full flex justify-center items-center h-16">
+    <div ref={headerRef}>
+      <div className="flex fixed top-0 w-full bg-white justify-center items-center h-20">
         <img src={logo} alt="logo" onClick={() => setOpen(!open)} />
       </div>
       <Drawer
@@ -54,6 +56,6 @@ export default function Header() {
           </ul>
         </Drawer.Body>
       </Drawer>
-    </>
+    </div>
   );
 }

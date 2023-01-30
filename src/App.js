@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import BoxPage from "./pages/BoxPage";
 import TimePage from "./pages/TimePage";
@@ -9,13 +9,27 @@ export const TabContext = React.createContext();
 
 export default function App() {
   const [activePage, setActivePage] = useState("boxPage");
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const [navHeight, setNavHeight] = useState(0);
+  const [boxHeight, setBoxHeight] = useState(null);
+
+  const boxRef = useRef(null);
 
   useEffect(() => {
-    const currentUrl = window.location.href
-    if (!currentUrl.includes('#hash')) {
-      window.history.pushState({}, null, currentUrl + '#hash')
+    const currentUrl = window.location.href;
+    if (!currentUrl.includes("#hash")) {
+      window.history.pushState({}, null, currentUrl + "#hash");
     }
   }, []);
+
+  useEffect(() => {
+    const boxHeightRef = boxRef.current.offsetHeight;
+    const newBoxHeight = boxHeightRef - navHeight - headerHeight;
+    console.log(navHeight, headerHeight);
+    console.log(boxHeightRef);
+    console.log(newBoxHeight);
+    setBoxHeight(newBoxHeight);
+  }, [navHeight, headerHeight]);
 
   const changePage = (page) => {
     setActivePage(page);
@@ -29,10 +43,16 @@ export default function App() {
       </div>
       <div className="md:hidden block">
         <TabContext.Provider value={{ activePage, changePage }}>
-          <Header />
-          {activePage === "boxPage" && <BoxPage />}
-          {activePage === "timePage" && <TimePage />}
-          <Navigation />
+          <Header setHeaderHeight={setHeaderHeight} />
+          <div
+            ref={boxRef}
+            style={{ height: `${boxHeight}px` }}
+            className="box w-full h-screen bg-white absolute z-0 top-20 bottom-0 overflow-scroll rounded-t-3xl p-8 drop-shadow-[0_0_10px_rgba(0,0,0,0.25)] text-[#abd1c6]"
+          >
+            {activePage === "boxPage" && <BoxPage />}
+            {activePage === "timePage" && <TimePage />}
+          </div>
+          <Navigation setNavHeight={setNavHeight} />
         </TabContext.Provider>
       </div>
     </>

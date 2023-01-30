@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function Priorities() {
   const [priorities, setPriorities] = useState(
@@ -31,15 +31,21 @@ export default function Priorities() {
 
   };
 
+  let element = useRef();
+  useEffect(() => {
+    let screenHeight = window.innerHeight;
+    
+  }, [])
+  
+
   useEffect(() => {
     localStorage.setItem("priorities", JSON.stringify(priorities));
   }, [priorities]);
 
   return (
-    <>
-      <h1 className="text-sm text-[#272343] pl-5">Top Priorities</h1>
-      <div className="box border-y border-[#272343] bg-[#BAE8E8] h-10 flex items-center px-5">
-        <span className="mr-1">#1</span>
+    <div ref={element}>
+      <h1 className="mb-2 text-lg text-[#004643]">Top Priorities</h1>
+      <div className="flex justify-center items-center w-full h-10 bg-[#004643] mb-1 rounded-3xl p-5">
         <input
           className="bg-transparent outline-none w-full"
           type="text"
@@ -49,8 +55,7 @@ export default function Priorities() {
           name="priority1"
         />
       </div>
-      <div className="box bg-[#BAE8E8] h-10 flex items-center px-5">
-        <span className="mr-1">#2</span>
+      <div className="flex justify-center items-center w-full h-10 bg-[#004643] mb-1 rounded-3xl p-5">
         <input
           className="bg-transparent outline-none w-full"
           type="text"
@@ -60,8 +65,7 @@ export default function Priorities() {
           name="priority2"
         />
       </div>
-      <div className="box border-y border-[#272343] bg-[#BAE8E8] h-10 flex items-center px-5">
-        <span className="mr-1">#3</span>
+      <div className="flex justify-center items-center w-full h-10 bg-[#004643] mb-1 rounded-3xl p-5">
         <input
           className="bg-transparent outline-none w-full"
           type="text"
@@ -71,6 +75,6 @@ export default function Priorities() {
           name="priority3"
         />
       </div>
-    </>
+    </div>
   );
 }
