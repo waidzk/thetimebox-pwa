@@ -2,34 +2,44 @@
     "id": "TheTimeBox",
     "name": "TheTimeBox",
     "short_name": "TheTimeBox",
-    "theme_color": "#E3F6F5",
-    "background_color": "#E3F6F5",
+    "theme_color": "#FFFFFF",
+    "background_color": "#FFFFFF",
     "start_url": ".",
     "display": "standalone",
     "icons": [
       {
-        "src": "img/icon-48.png",
+        "src": "img/maskable_icon_x48.png",
         "sizes": "48x48",
         "type": "image/png"
       },
       {
-        "src": "img/icon-96.png",
+        "src": "img/maskable_icon_x72.png",
+        "sizes": "72x72",
+        "type": "image/png"
+      },
+      {
+        "src": "img/maskable_icon_x96.png",
         "sizes": "96x96",
         "type": "image/png"
       },
       {
-        "src": "img/icon-144.png",
-        "sizes": "144x144",
+        "src": "img/maskable_icon_x128.png",
+        "sizes": "128x128",
         "type": "image/png"
       },
       {
-        "src": "img/icon-196.png",
-        "sizes": "196x196",
+        "src": "img/maskable_icon_x192.png",
+        "sizes": "192x192",
         "type": "image/png"
       },
       {
-        "src": "img/icon-384.png",
+        "src": "img/maskable_icon_x384.png",
         "sizes": "384x384",
+        "type": "image/png"
+      },
+      {
+        "src": "img/maskable_icon_x512.png",
+        "sizes": "512x512",
         "type": "image/png"
       }
     ]
