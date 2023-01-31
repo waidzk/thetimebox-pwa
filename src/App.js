@@ -25,9 +25,6 @@ export default function App() {
   useEffect(() => {
     const boxHeightRef = boxRef.current.offsetHeight;
     const newBoxHeight = boxHeightRef - navHeight - headerHeight;
-    console.log(navHeight, headerHeight);
-    console.log(boxHeightRef);
-    console.log(newBoxHeight);
     setBoxHeight(newBoxHeight);
   }, [navHeight, headerHeight]);
 

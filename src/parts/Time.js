@@ -76,7 +76,7 @@ export default function Time() {
           <span className="fas fa-plus"></span>
         </span>
       </div>
-      <div className="max-h-[77vh] overflow-scroll" ref={boxLists}>
+      <div className="max-h-[65vh] overflow-scroll" ref={boxLists}>
         {schedules.map((schedule) => {
           return (
             <div
