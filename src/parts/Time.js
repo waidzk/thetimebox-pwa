@@ -3,8 +3,6 @@ import { DatePicker } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
 
 export default function Time() {
-  const [textAreaHeight, setTextAreaHeight] = useState(null);
-  const textAreaRef = useRef(null);
   const [schedules, setSchedules] = useState(
     localStorage.getItem("schedules")
       ? JSON.parse(localStorage.getItem("schedules"))
@@ -62,14 +60,6 @@ export default function Time() {
   };
 
   useEffect(() => {
-    const textArea = textAreaRef.current;
-    if (!textArea) return;
-    textArea.style.height = "auto";
-    textArea.style.height = `${textArea.scrollHeight}px`;
-    setTextAreaHeight(textArea.scrollHeight);
-  }, []);
-
-  useEffect(() => {
     localStorage.setItem("schedules", JSON.stringify(schedules));
   }, [schedules]);
 
@@ -86,29 +76,20 @@ export default function Time() {
           <span className="fas fa-plus"></span>
         </span>
       </div>
-      <div className="max-h-[77vh] overflow-hidden" ref={boxLists}>
+      <div className="max-h-[77vh] overflow-scroll" ref={boxLists}>
         {schedules.map((schedule) => {
           return (
             <div
               id="box-item"
               className="flex justify-between items-center w-full h-10 bg-[#e8e4e6] mb-1 rounded-3xl p-5"
-              style={{ height: textAreaHeight }}
               key={schedule.idData}
             >
-              <textarea
+              <input
                 id={schedule.idData}
-                ref={textAreaRef}
-                style={{ height: textAreaHeight }}
-                onInput={() => {
-                  const textArea = textAreaRef.current;
-                  textArea.style.height = "auto";
-                  textArea.style.height = `${textArea.scrollHeight}px`;
-                  setTextAreaHeight(textArea.scrollHeight);
-                }}
                 placeholder="write here"
                 defaultValue={schedule.data}
                 onChange={updateScheduleData(schedule.idData)}
-                className="text-[#272343] h-10 bg-transparent overflow-hidden p-1"
+                className="text-[#272343] flex items-center h-10 bg-transparent overflow-hidden p-1"
               />
               <div className="bg-transparent h-13 flex items-center justify-between px-2 w-1/2">
                 <DatePicker
