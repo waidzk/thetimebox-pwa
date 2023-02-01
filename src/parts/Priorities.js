@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Priorities() {
   const [priorities, setPriorities] = useState(
@@ -30,12 +30,6 @@ export default function Priorities() {
     }
 
   };
-
-  let element = useRef();
-  useEffect(() => {
-    let screenHeight = window.innerHeight;
-    
-  }, [])
   
 
   useEffect(() => {
@@ -43,13 +37,13 @@ export default function Priorities() {
   }, [priorities]);
 
   return (
-    <div ref={element}>
+    <>
       <h1 className="mb-2 text-lg text-[#004643]">Top Priorities</h1>
       <div className="flex justify-center items-center w-full h-10 bg-[#004643] mb-1 rounded-3xl p-5">
         <input
           className="bg-transparent outline-none w-full"
           type="text"
-          placeholder="Priority"
+          placeholder="#1 Priority"
           value={priorities.priority1}
           onChange={(e) => updatePriorities(e)}
           name="priority1"
@@ -59,7 +53,7 @@ export default function Priorities() {
         <input
           className="bg-transparent outline-none w-full"
           type="text"
-          placeholder="Priority"
+          placeholder="#2 Priority"
           value={priorities.priority2}
           onChange={(e) => updatePriorities(e)}
           name="priority2"
@@ -69,12 +63,12 @@ export default function Priorities() {
         <input
           className="bg-transparent outline-none w-full"
           type="text"
-          placeholder="Priority"
+          placeholder="#3 Priority"
           value={priorities.priority3}
           onChange={(e) => updatePriorities(e)}
           name="priority3"
         />
       </div>
-    </div>
+    </>
   );
 }
